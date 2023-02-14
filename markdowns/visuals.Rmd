@@ -23,6 +23,19 @@ The dataset used for this project can be found in this project's repository unde
  sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
 ```
 
+## Comparing Success Rates Across the Three Identified Approaches
+
+```{r}
+ggplot(sr.dataset,aes(x=approach,y=effect.dir,fill=effect.dir))
+```
+
+
+## Comparing Effect Estimates Across the Three Identified Approaches
+
+```{r}
+
+```
+
 
 ## Forest Plot
 
