@@ -1,7 +1,7 @@
 ---
-title: "plots"
+title: "Visuals"
 output: html_document
-date: "2023-02-13"
+date: "Last updated: February 13, 2023"
 ---
 
 ```{r setup, include=FALSE}
@@ -17,8 +17,11 @@ library(ggsignif)
 
 ## Loading in the Dataset
 
-The dataset used for this project can be found in this project's repository under the `data` folder as `sr-dataset.cv`.
+The dataset used for this project can be found in this project's repository under the `data` folder as `sr-dataset.cv`. It can be imported into your environment using the following code chunk:
 
+```{r}
+ sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
+```
 
 
 ## Forest Plot
