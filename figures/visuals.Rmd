@@ -1,6 +1,6 @@
 ---
 title: "Visuals"
-output: html_document
+output: github_document
 date: "Last updated: February 13, 2023"
 ---
 
