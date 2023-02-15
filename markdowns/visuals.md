@@ -125,10 +125,10 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,color=approach)) +
   xlab("Estimated Effect Size") + 
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
-  labs(color="Approach") +
+  labs(color=" ") +
   scale_color_brewer(breaks=c("Multimodal","Choice Architecture","Conscious Processing"),palette="Set2",labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
   scale_y_discrete(limits=c("Garnett et al. (2020a)","Garnett et al. (2021)","Brunner et al. (2018)","Schwitzgebel, Cokelet, & Singer (2020)","Malan (2020)","Larner et al. (2021)","Kurz (2018)","Garnett et al. (2019)","Jalil, Tasoff, & Bustamante (2020)","Turnwald & Crum (2019)","Cerezo-Prieto & Frutos-Esteban (2021)","Piester et al. (2020a)","Piester et al. (2020b)","Slapø & Karevold (2019)","Andersson & Nelander (2021)","Michels et al. (2008)","Garnett et al. (2020b)")) + 
-  theme(panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
+  theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -144,6 +144,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   xlab("Odds Ratio") + 
   ylab(" ") +
   labs(fill=" ") +
+  coord_cartesian(xlim=c(.8,4)) +
   theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
