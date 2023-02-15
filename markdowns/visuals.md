@@ -61,7 +61,7 @@ in meat consumption.
 ``` r
 ggplot(sr.dataset,aes(x=effect.mag,y=study.title,color=approach)) + 
   geom_errorbar(aes(xmin=lower.ci,xmax=higher.ci),color="black",width=.2,size=.3) +
-  geom_point(size=3) + 
+  geom_point(alpha=.4,size=3) + 
   xlab("Estimated Effect Size") + 
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
