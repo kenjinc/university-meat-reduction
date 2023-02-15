@@ -112,22 +112,6 @@ print(as_tibble(fixed.effect))
     ## #   num.study <int>, and abbreviated variable names ¹​study.title, ²​year.cond,
     ## #   ³​eval.method, ⁴​approach, ⁵​outcome.var, ⁶​effect.dir, ⁷​effect.mag, ⁸​lower.ci
 
-## Comparing Effect Estimates Across the Three Identified Approaches
-
-``` r
-ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
-  geom_violin(adjust=1.2,alpha=0.8) + 
-  stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
-  scale_y_discrete(limits=c("Conscious Processing","Choice Architecture","Multimodal")) +
-  scale_fill_brewer(palette="Set2",breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
-  xlab("Odds Ratio") + 
-  ylab(" ") +
-  labs(fill=" ") +
-  theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
-```
-
-![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
-
 ## Forest Plot
 
 The fixed effect model used for our meta-analysis was restricted to the
@@ -145,6 +129,22 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,color=approach)) +
   scale_color_brewer(breaks=c("Multimodal","Choice Architecture","Conscious Processing"),palette="Set2",labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
   scale_y_discrete(limits=c("Garnett et al. (2020a)","Garnett et al. (2021)","Brunner et al. (2018)","Schwitzgebel, Cokelet, & Singer (2020)","Malan (2020)","Larner et al. (2021)","Kurz (2018)","Garnett et al. (2019)","Jalil, Tasoff, & Bustamante (2020)","Turnwald & Crum (2019)","Cerezo-Prieto & Frutos-Esteban (2021)","Piester et al. (2020a)","Piester et al. (2020b)","Slapø & Karevold (2019)","Andersson & Nelander (2021)","Michels et al. (2008)","Garnett et al. (2020b)")) + 
   theme(panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
+```
+
+![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+## Comparing Effect Estimates Across the Three Identified Approaches
+
+``` r
+ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
+  geom_violin(adjust=1.2,alpha=0.8) + 
+  stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
+  scale_y_discrete(limits=c("Conscious Processing","Choice Architecture","Multimodal")) +
+  scale_fill_brewer(palette="Set2",breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
+  xlab("Odds Ratio") + 
+  ylab(" ") +
+  labs(fill=" ") +
+  theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
