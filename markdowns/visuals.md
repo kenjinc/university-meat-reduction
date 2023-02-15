@@ -23,23 +23,24 @@ sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
 print(as_tibble(sr.dataset))
 ```
 
-    ## # A tibble: 31 × 17
-    ##    study.title   country year.…¹ eval.…² appro…³ outco…⁴ effec…⁵ effec…⁶ lower…⁷
-    ##    <chr>         <chr>     <int> <chr>   <chr>   <chr>   <chr>     <dbl>   <dbl>
-    ##  1 Andersson & … Sweden     2019 Betwee… Multim… Observ… ^          2.78    1   
-    ##  2 Brunner et a… Sweden     2016 Pre-Po… Multim… Observ… ^          1.09    1.01
-    ##  3 Campbell-Arv… USA        2010 Betwee… Multim… Intend… ^         12.2     8.9 
-    ##  4 Carfora et a… Italy      2018 Both    Consci… Self-R… ^          2.59    1.35
-    ##  5 Carfora, Cas… Italy      2016 Both    Consci… Self-R… ^          3.49    1.75
-    ##  6 Carfora, Cas… Italy      2015 Both    Consci… Self-R… ^          3.73    2.29
-    ##  7 Cerezo-Priet… Spain      2020 Pre-Po… Multim… Observ… ^          1.71    1.37
-    ##  8 Dissen & Cro… USA        2019 Both    Consci… Self-R… ^          3.2     1.68
-    ##  9 Garnett et a… England    2018 Betwee… Choice… Observ… <>         1.07    1.01
-    ## 10 Garnett et a… England    2017 Betwee… Choice… Observ… <>         0.82    0.78
-    ## # … with 21 more rows, 8 more variables: higher.ci <dbl>, num.strat <int>,
-    ## #   inform.mess <int>, financial.inc <int>, menu.pres <int>, area.layout <int>,
-    ## #   menu.off <int>, num.study <int>, and abbreviated variable names ¹​year.cond,
-    ## #   ²​eval.method, ³​approach, ⁴​outcome.var, ⁵​effect.dir, ⁶​effect.mag, ⁷​lower.ci
+    ## # A tibble: 31 × 18
+    ##    study.title   country year.…¹ year.…² eval.…³ appro…⁴ outco…⁵ effec…⁶ effec…⁷
+    ##    <chr>         <chr>     <int>   <int> <chr>   <chr>   <chr>   <chr>     <dbl>
+    ##  1 Andersson & … Sweden     2021    2019 Betwee… Multim… Observ… ^          2.78
+    ##  2 Brunner et a… Sweden     2018    2016 Pre-Po… Multim… Observ… ^          1.09
+    ##  3 Campbell-Arv… USA        2011    2010 Betwee… Multim… Intend… ^         12.2 
+    ##  4 Carfora et a… Italy      2019    2018 Both    Consci… Self-R… ^          2.59
+    ##  5 Carfora, Cas… Italy      2017    2016 Both    Consci… Self-R… ^          3.49
+    ##  6 Carfora, Cas… Italy      2017    2015 Both    Consci… Self-R… ^          3.73
+    ##  7 Cerezo-Priet… Spain      2021    2020 Pre-Po… Multim… Observ… ^          1.71
+    ##  8 Dissen & Cro… USA        2020    2019 Both    Consci… Self-R… ^          3.2 
+    ##  9 Garnett et a… England    2019    2017 Betwee… Choice… Observ… ^          1.52
+    ## 10 Garnett et a… England    2020    2017 Betwee… Choice… Observ… <>         0.82
+    ## # … with 21 more rows, 9 more variables: lower.ci <dbl>, higher.ci <dbl>,
+    ## #   num.strat <int>, inform.mess <int>, financial.inc <int>, menu.pres <int>,
+    ## #   area.layout <int>, menu.off <int>, num.study <int>, and abbreviated
+    ## #   variable names ¹​year.pub, ²​year.cond, ³​eval.method, ⁴​approach,
+    ## #   ⁵​outcome.var, ⁶​effect.dir, ⁷​effect.mag
 
 ## Reporting on Search Results
 
@@ -77,16 +78,16 @@ fixed.effect <- filter(sr.dataset,outcome.var=="Observed Changes")
 ```
 
 ``` r
-write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed.effect.csv")
+write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed-effect.csv")
 ```
 
 ``` r
-fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed.effect.csv")
+fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed-effect.csv")
 
 print(as_tibble(fixed.effect))
 ```
 
-    ## # A tibble: 17 × 17
+    ## # A tibble: 17 × 18
     ##        X study…¹ country year.…² eval.…³ appro…⁴ outco…⁵ effec…⁶ effec…⁷ lower…⁸
     ##    <int> <chr>   <chr>     <int> <chr>   <chr>   <chr>   <chr>     <dbl>   <dbl>
     ##  1     1 Anders… Sweden     2019 Betwee… Multim… Observ… ^          2.78    1   
@@ -106,10 +107,10 @@ print(as_tibble(fixed.effect))
     ## 15    15 Schwit… USA        2017 Both    Consci… Observ… ^          1.27    1.16
     ## 16    16 Slapø … Norway     2018 Pre-Po… Multim… Observ… ^          2.7     1.04
     ## 17    17 Turnwa… USA        2017 Betwee… Choice… Observ… <>         1.68    1.46
-    ## # … with 7 more variables: higher.ci <dbl>, num.strat <int>, inform.mess <int>,
+    ## # … with 8 more variables: higher.ci <dbl>, num.strat <int>, inform.mess <int>,
     ## #   financial.inc <int>, menu.pres <int>, area.layout <int>, menu.off <int>,
-    ## #   and abbreviated variable names ¹​study.title, ²​year.cond, ³​eval.method,
-    ## #   ⁴​approach, ⁵​outcome.var, ⁶​effect.dir, ⁷​effect.mag, ⁸​lower.ci
+    ## #   num.study <int>, and abbreviated variable names ¹​study.title, ²​year.cond,
+    ## #   ³​eval.method, ⁴​approach, ⁵​outcome.var, ⁶​effect.dir, ⁷​effect.mag, ⁸​lower.ci
 
 ## Comparing Effect Estimates Across the Three Identified Approaches
 

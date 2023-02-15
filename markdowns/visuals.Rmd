@@ -73,12 +73,12 @@ fixed.effect <- filter(sr.dataset,outcome.var=="Observed Changes")
 ```
 
 ```{r,eval=FALSE}
-write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed.effect.csv")
+write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed-effect.csv")
 ```
 
 
 ```{r}
-fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed.effect.csv")
+fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed-effect.csv")
 
 print(as_tibble(fixed.effect))
 ```
