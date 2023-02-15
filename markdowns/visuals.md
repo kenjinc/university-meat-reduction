@@ -65,7 +65,7 @@ ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) +
   scale_fill_brewer(palette ="Pastel1") +
   xlab(" ") + 
   ylab("Rate of Success") +
-  theme(panel.border=element_rect(color="black"),panel.grid.minor=element_blank())
+  theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),panel.grid.minor=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
@@ -121,7 +121,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   xlab("Odds Ratio") + 
   ylab(" ") +
   labs(fill=" ") +
-  theme(axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
+  theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -142,7 +142,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,color=approach)) +
   labs(color="Approach") +
   scale_color_brewer(breaks=c("Multimodal","Conscious Processing","Choice Architecture"),palette="Set2",labels=c("Multimodal (n=10)","Conscious Processing (n=16)","Choice Architecture (n=5)")) +
   scale_y_discrete(limits=c("Garnett et al. (2020a)","Garnett et al. (2021)","Brunner et al. (2018)","Schwitzgebel, Cokelet, & Singer (2020)","Malan (2020)","Larner et al. (2021)","Kurz (2018)","Garnett et al. (2019)","Jalil, Tasoff, & Bustamante (2020)","Turnwald & Crum (2019)","Cerezo-Prieto & Frutos-Esteban (2021)","Piester et al. (2020a)","Piester et al. (2020b)","Slapø & Karevold (2019)","Andersson & Nelander (2021)","Michels et al. (2008)","Garnett et al. (2020b)")) + 
-  theme(panel.grid.minor=element_blank())
+  theme(panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
