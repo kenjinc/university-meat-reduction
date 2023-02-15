@@ -1,6 +1,6 @@
 ---
 title: "Visuals"
-output: github_document
+output: html_document
 date: "Last updated: February 13, 2023"
 ---
 
@@ -11,8 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Required Packages
 
 ```{r}
-library(tidyverse)
+library(ggplot2)
 library(ggsignif)
+library(DiagrammeR)
 ```
 
 ## Loading in the Dataset
@@ -21,6 +22,34 @@ The dataset used for this project can be found in this project's repository unde
 
 ```{r}
  sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
+```
+
+## Reporting on Search Results
+
+```{r}
+grViz(diagram="digraph flowchart {
+      node [fontname=arial,shape=rectangle]
+      tab1[label='@@1']
+      tab2[label='@@2']
+      tab3[label='@@3']
+      tab4[label='@@4']
+      tab5[label='@@5']
+      tab6[label='@@6']
+      tab7[label='@@7']
+      tab8[label='@@8']
+      tab9[label='@@9']
+      tab1 -> tab3 -> tab5 -> tab6 -> tab8 -> tab9;
+    }
+      [1]:'Records identified from databases (n=13,607):|ERIC (n=106)|PsycINFO (n=206)|PubAg (n=6,900)|PubMed (n=1,522)| Scopus (n=1,567)|SocAb (n=489)|Web of Science (n=756)'
+      [2]:'Duplicates removed (n=2,061)'
+      [3]:'Records screened (n=11,546)'
+      [4]:'Records excluded (n=11,460)'
+      [5]:'Articles retrieved (n=86)'
+      [6]:'Articles assesses for eligibility (n=86)'
+      [7]:'Articles excluded (n=56)'
+      [8]:'Selected articles (n=29)'
+      [9]:'Selected studies (n=31)'
+    ")
 ```
 
 ## Comparing Success Rates Across the Three Identified Approaches
