@@ -87,8 +87,9 @@ print(as_tibble(fixed.effect))
 
 ```{r}
 ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
-  geom_violin(alpha=0.8) + 
+  geom_violin(adjust=1.2,alpha=0.8) + 
   stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
+  scale_y_discrete(limits=c("Conscious Processing","Choice Architecture","Multimodal")) +
   scale_fill_brewer(palette="Set2",breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
   xlab("Odds Ratio") + 
   ylab(" ") +
