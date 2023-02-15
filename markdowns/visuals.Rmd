@@ -21,7 +21,7 @@ library(DiagrammeR)
 The dataset used for this project can be found in this project's repository under the `data` folder as `sr-dataset.cv`. It can be imported into your environment using the following code chunk:
 
 ```{r}
- sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
+sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
 
 print(sr.dataset)
 ```
@@ -60,8 +60,17 @@ ggplot(sr.dataset,aes(x=approach,y=effect.dir,fill=effect.dir))
 ```
 ## Creating a Dataframe for our Fixed Effect Model
 
-```{r}
+```{r,eval=FALSE}
 fixed.effect <- filter(sr.dataset,outcome.var=="Observed Changes")
+```
+
+```{r}
+write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed-effect.csv")
+```
+
+
+```{r}
+fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed-effect.csv")
 
 print(fixed.effect)
 ```
