@@ -5,20 +5,9 @@ Last updated: February 13, 2023
 ## Required Packages
 
 ``` r
-library(tidyverse)
-```
-
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
-    ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-    ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-    ## ✔ readr   2.1.2      ✔ forcats 0.5.2 
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
+library(ggplot2)
 library(ggsignif)
+library(DiagrammeR)
 ```
 
 ## Loading in the Dataset
@@ -30,6 +19,38 @@ imported into your environment using the following code chunk:
 ``` r
  sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
 ```
+
+## Reporting on Search Results
+
+grViz(diagram=“digraph flowchart { node
+\[fontname=arial,shape=rectangle\] tab1\[label=‘@@1’\]
+tab2\[label=‘@@2’\] tab3\[label=‘@@3’\] tab4\[label=‘@@4’\]
+tab5\[label=‘@@5’\] tab6\[label=‘@@6’\] tab7\[label=‘@@7’\]
+tab8\[label=‘@@8’\] tab9\[label=‘@@9’\] tab1 -\> tab3 -\> tab5 -\> tab6
+-\> tab8 -\> tab9; } \[1\]:‘Records identified from databases
+(n=13,607):\|ERIC (n=106)\|PsycINFO (n=206)\|PubAg (n=6,900)\|PubMed
+(n=1,522)\| Scopus (n=1,567)\|SocAb (n=489)\|Web of Science (n=756)’
+\[2\]:‘Duplicates removed (n=2,061)’ \[3\]:‘Records screened (n=11,546)’
+\[4\]:‘Records excluded (n=11,460)’ \[5\]:‘Articles retrieved (n=86)’
+\[6\]:‘Articles assesses for eligibility (n=86)’ \[7\]:‘Articles
+excluded (n=56)’ \[8\]:‘Selected articles (n=29)’ \[9\]:‘Selected
+studies (n=31)’”)
+
+## Comparing Success Rates Across the Three Identified Approaches
+
+``` r
+ggplot(sr.dataset,aes(x=approach,y=effect.dir,fill=effect.dir))
+```
+
+![](visuals_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+## Comparing Effect Estimates Across the Three Identified Approaches
+
+``` r
+ggplot(sr.dataset)
+```
+
+![](visuals_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ## Forest Plot
 
@@ -52,4 +73,4 @@ ggplot(sr.dataset,aes(x=effect.mag,y=study.title,color=approach)) +
 
     ## Warning: Removed 14 rows containing missing values (geom_point).
 
-![](visuals_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
