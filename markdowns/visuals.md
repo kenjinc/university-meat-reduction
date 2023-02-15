@@ -65,7 +65,7 @@ ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) +
   scale_fill_brewer(palette ="Pastel1") +
   xlab(" ") + 
   ylab("Rate of Success") +
-  theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),panel.grid.minor=element_blank())
+  theme(panel.border=element_rect(fill=NA),panel.background=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
