@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(ggplot2)
+library(tibble)
 library(ggsignif)
 library(DiagrammeR)
 ```
@@ -23,7 +24,7 @@ The dataset used for this project can be found in this project's repository unde
 ```{r}
 sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
 
-print(sr.dataset)
+print(as_tibble(sr.dataset))
 ```
 
 ## Reporting on Search Results
@@ -58,13 +59,14 @@ grViz(diagram="digraph flowchart {
 ```{r}
 ggplot(sr.dataset,aes(x=approach,y=effect.dir,fill=effect.dir))
 ```
+
 ## Creating a Dataframe for our Fixed Effect Model
 
 ```{r,eval=FALSE}
 fixed.effect <- filter(sr.dataset,outcome.var=="Observed Changes")
 ```
 
-```{r}
+```{r,eval=FALSE}
 write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed.effect.csv")
 ```
 
@@ -72,15 +74,20 @@ write.csv(fixed.effect,"~/github/university-meat-reduction/data/fixed.effect.csv
 ```{r}
 fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed.effect.csv")
 
-print(fixed.effect)
+print(as_tibble(fixed.effect))
 ```
 
 ## Comparing Effect Estimates Across the Three Identified Approaches
 
 ```{r}
-ggplot(sr.dataset,aes(x=effect.mag,y=approach,fill=approach)) +
+ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   geom_violin(alpha=0.8) + 
-  scale_fill_brewer(palette="Set2")
+  stat_summary(fun.x="mean",geom="point",shape=21,fill="black",size=3) +
+  scale_fill_brewer(palette="Set2",breaks=c("Multimodal","Conscious Processing","Choice Architecture")) +
+  xlab("Odds Ratio") + 
+  ylab(" ") +
+  labs(fill=" ") +
+  theme(axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
 ## Forest Plot
@@ -88,7 +95,7 @@ ggplot(sr.dataset,aes(x=effect.mag,y=approach,fill=approach)) +
 The fixed effect model used for our meta-analysis was restricted to the 17 interventions that utilized observational methods to evaluate changes in meat consumption.
 
 ```{r}
-ggplot(sr.dataset,aes(x=effect.mag,y=study.title,color=approach)) + 
+ggplot(fixed.effect,aes(x=effect.mag,y=study.title,color=approach)) + 
   geom_errorbar(aes(xmin=lower.ci,xmax=higher.ci),color="black",width=.2,size=.3) +
   geom_point(alpha=.8,size=3) + 
   xlab("Estimated Effect Size") + 
