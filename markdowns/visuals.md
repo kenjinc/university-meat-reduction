@@ -93,12 +93,12 @@ print(as_tibble(fixed.effect))
     ##  1     1 Anders… Sweden     2019 Betwee… Multim… Observ… ^          2.78    1   
     ##  2     2 Brunne… Sweden     2016 Pre-Po… Multim… Observ… ^          1.09    1.01
     ##  3     3 Cerezo… Spain      2020 Pre-Po… Multim… Observ… ^          1.71    1.37
-    ##  4     4 Garnet… England    2018 Betwee… Choice… Observ… <>         1.07    1.01
-    ##  5     5 Garnet… England    2017 Betwee… Choice… Observ… <>         0.82    0.78
+    ##  4     4 Garnet… England    2017 Betwee… Choice… Observ… ^          1.52    1.4 
+    ##  5     5 Garnet… England    2017 Betwee… Choice… Observ… <>         0.82    0.78
     ##  6     6 Garnet… England    2018 Betwee… Choice… Observ… ^          3.64    3.51
-    ##  7     7 Garnet… England    2017 Pre-Po… Consci… Observ… ^          1.52    1.4 
-    ##  8     8 Jalil,… USA        2019 Both    Consci… Observ… <>         1.57    0.97
-    ##  9     9 Kurz (… Sweden     2015 Both    Choice… Observ… <>         1.44    0.7 
+    ##  7     7 Garnet… England    2018 Pre-Po… Consci… Observ… <>         1.07    1.01
+    ##  8     8 Jalil,… USA        2019 Both    Consci… Observ… <>         1.57    0.97
+    ##  9     9 Kurz (… Sweden     2015 Both    Choice… Observ… <>         1.44    0.7 
     ## 10    10 Larner… England    2019 Pre-Po… Multim… Observ… ^          1.41    1.36
     ## 11    11 Malan … USA        2019 Both    Multim… Observ… ^          1.39    1.34
     ## 12    12 Michel… USA        2001 Pre-Po… Consci… Observ… ^          2.82    2.57
@@ -106,7 +106,7 @@ print(as_tibble(fixed.effect))
     ## 14    14 Pieste… USA        2019 Betwee… Multim… Observ… ^          2.13    1.47
     ## 15    15 Schwit… USA        2017 Both    Consci… Observ… ^          1.27    1.16
     ## 16    16 Slapø … Norway     2018 Pre-Po… Multim… Observ… ^          2.7     1.04
-    ## 17    17 Turnwa… USA        2017 Betwee… Choice… Observ… <>         1.68    1.46
+    ## 17    17 Turnwa… USA        2017 Betwee… Choice… Observ… <>         1.68    1.46
     ## # … with 8 more variables: higher.ci <dbl>, num.strat <int>, inform.mess <int>,
     ## #   financial.inc <int>, menu.pres <int>, area.layout <int>, menu.off <int>,
     ## #   num.study <int>, and abbreviated variable names ¹​study.title, ²​year.cond,
