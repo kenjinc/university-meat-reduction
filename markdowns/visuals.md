@@ -47,7 +47,9 @@ ggplot(sr.dataset,aes(x=approach,y=effect.dir,fill=effect.dir))
 ## Comparing Effect Estimates Across the Three Identified Approaches
 
 ``` r
-ggplot(sr.dataset)
+ggplot(sr.dataset,aes(x=effect.mag,y=approach,fill=approach)) +
+  geom_violin(alpha=0.8) + 
+  scale_fill_brewer(palette="Set2")
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
@@ -61,7 +63,7 @@ in meat consumption.
 ``` r
 ggplot(sr.dataset,aes(x=effect.mag,y=study.title,color=approach)) + 
   geom_errorbar(aes(xmin=lower.ci,xmax=higher.ci),color="black",width=.2,size=.3) +
-  geom_point(alpha=.4,size=3) + 
+  geom_point(alpha=.8,size=3) + 
   xlab("Estimated Effect Size") + 
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
