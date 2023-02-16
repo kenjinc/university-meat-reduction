@@ -2,7 +2,7 @@ Visuals
 ================
 Last updated: February 13, 2023
 
-## Required Packages
+## Required packages
 
 ``` r
 library(ggplot2)
@@ -11,7 +11,7 @@ library(ggsignif)
 library(DiagrammeR)
 ```
 
-## Loading in the Dataset
+## Loading in the dataset
 
 The dataset used for this project can be found in this project’s
 repository under the `data` folder as `sr-dataset.cv`. It can be
@@ -42,7 +42,7 @@ print(as_tibble(sr.dataset))
     ## #   variable names ¹​year.pub, ²​year.cond, ³​eval.method, ⁴​approach,
     ## #   ⁵​outcome.var, ⁶​effect.dir, ⁷​effect.mag
 
-## Reporting on Search Results
+## Reporting on search results
 
 grViz(diagram=“digraph flowchart { node
 \[fontname=arial,shape=rectangle\] tab1\[label=‘@@1’\]
@@ -58,7 +58,30 @@ tab8\[label=‘@@8’\] tab9\[label=‘@@9’\] tab1 -\> tab3 -\> tab5 -\> tab6
 excluded (n=56)’ \[8\]:‘Selected articles (n=29)’ \[9\]:‘Selected
 studies (n=31)’”)
 
-## Comparing Success Rates Across the Three Identified Approaches
+## Exploring the implementation and publication rates of included studies
+
+First, we’ll have to load in the transformed dataset documenting the
+cumulative frequency with which the included studies were conducted and
+published by year.
+
+``` r
+times.series <- read.csv("~/github/university-meat-reduction/data/time-series.csv")
+```
+
+``` r
+ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
+  geom_col(position="dodge") +
+  scale_fill_brewer(palette="RdPu",guide=guide_legend(title=NULL)) +
+  scale_x_continuous(breaks=c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021)) +
+  xlab(" ") +
+  ylab("Cumulative Frequency") +
+  scale_y_continuous(breaks=c(1,11,21,31)) +
+  theme(panel.background=element_blank(),legend.position="bottom",panel.border=element_rect(fill=NA))
+```
+
+![](visuals_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+## Comparing success rates across the three ddentified approaches
 
 ``` r
 ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) + 
@@ -71,9 +94,9 @@ ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-## Creating a Dataframe for our Fixed Effect Model
+## Creating a dataframe for the fixed effect model
 
 ``` r
 fixed.effect <- filter(sr.dataset,outcome.var=="Observed Changes")
@@ -114,11 +137,7 @@ print(as_tibble(fixed.effect))
     ## #   num.study <int>, and abbreviated variable names ¹​study.title, ²​year.cond,
     ## #   ³​eval.method, ⁴​approach, ⁵​outcome.var, ⁶​effect.dir, ⁷​effect.mag, ⁸​lower.ci
 
-## Forest Plot
-
-The fixed effect model used for our meta-analysis was restricted to the
-17 interventions that utilized observational methods to evaluate changes
-in meat consumption.
+## Comparing the estimated effect sizes across individual studies
 
 ``` r
 ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) + 
@@ -133,9 +152,9 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) +
   theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-## Comparing Effect Estimates Across the Three Identified Approaches
+## Comparing effect estimates across the three identified approaches
 
 ``` r
 ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
@@ -150,4 +169,4 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->

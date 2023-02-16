@@ -8,7 +8,7 @@ date: "Last updated: February 13, 2023"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Required Packages
+## Required packages
 
 ```{r}
 library(ggplot2)
@@ -17,7 +17,7 @@ library(ggsignif)
 library(DiagrammeR)
 ```
 
-## Loading in the Dataset
+## Loading in the dataset
 
 The dataset used for this project can be found in this project's repository under the `data` folder as `sr-dataset.cv`. It can be imported into your environment using the following code chunk:
 
@@ -27,7 +27,7 @@ sr.dataset <- read.csv("~/github/university-meat-reduction/data/sr-dataset.csv")
 print(as_tibble(sr.dataset))
 ```
 
-## Reporting on Search Results
+## Reporting on search results
 
 grViz(diagram="digraph flowchart {
       node [fontname=arial,shape=rectangle]
@@ -53,8 +53,27 @@ grViz(diagram="digraph flowchart {
       [9]:'Selected studies (n=31)'
     ")
 
+## Exploring the implementation and publication rates of included studies
 
-## Comparing Success Rates Across the Three Identified Approaches
+First, we'll have to load in the transformed dataset documenting the cumulative frequency with which the included studies were conducted and published by year.
+
+```{r}
+times.series <- read.csv("~/github/university-meat-reduction/data/time-series.csv")
+```
+
+
+```{r}
+ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
+  geom_col(position="dodge") +
+  scale_fill_brewer(palette="RdPu",guide=guide_legend(title=NULL)) +
+  scale_x_continuous(breaks=c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021)) +
+  xlab(" ") +
+  ylab("Cumulative Frequency") +
+  scale_y_continuous(breaks=c(1,11,21,31)) +
+  theme(panel.background=element_blank(),legend.position="bottom",panel.border=element_rect(fill=NA))
+```
+
+## Comparing success rates across the three ddentified approaches
 
 ```{r}
 ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) + 
@@ -68,7 +87,7 @@ ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) +
   
 ```
 
-## Creating a Dataframe for our Fixed Effect Model
+## Creating a dataframe for the fixed effect model
 
 ```{r,eval=FALSE}
 fixed.effect <- filter(sr.dataset,outcome.var=="Observed Changes")
@@ -85,9 +104,7 @@ fixed.effect <- read.csv("~/github/university-meat-reduction/data/fixed-effect.c
 print(as_tibble(fixed.effect))
 ```
 
-## Forest Plot
-
-The fixed effect model used for our meta-analysis was restricted to the 17 interventions that utilized observational methods to evaluate changes in meat consumption.
+## Comparing the estimated effect sizes across individual studies
 
 ```{r}
 ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) + 
@@ -102,7 +119,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) +
   theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
 
-## Comparing Effect Estimates Across the Three Identified Approaches
+## Comparing effect estimates across the three identified approaches
 
 ```{r}
 ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
