@@ -64,9 +64,10 @@ studies (n=31)’”)
 ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) + 
   geom_col(position="fill",alpha=.8) + 
   scale_fill_brewer(palette ="Pastel1") +
+  scale_x_discrete(labels=c("Choice Architecture (n=5)","Conscious Processing (n=16)","Multimodal (n=10)")) +
   xlab(" ") + 
   ylab("Rate of Success") +
-  theme(panel.border=element_rect(fill=NA),panel.background=element_blank())
+  theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
