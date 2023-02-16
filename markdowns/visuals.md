@@ -85,13 +85,13 @@ ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
 ## Looking at geospatial variation across studies
 
 ``` r
-intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway","Mexico"))
+intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway","Mexico","Portugal","France","Ireland","Iceland","Belgium"))
 ```
 
 ``` r
 ggplot(intervention_map,aes(x=long,y=lat,group=group,fill=region)) +
   geom_polygon(color="black",size=.15,alpha=0.8) +
-  scale_fill_manual(values=c("white","lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Mexico","Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Mexico","Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Mexico\n(n=0)","Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
+  scale_fill_manual(values=c("white","white","white","white","white","white","lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Belgium","France","Iceland","Ireland","Mexico","Portugal","Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Belgium","France","Iceland","Ireland","Mexico","Portugal","Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Belgium\n(n=0)","France\n(n=0)","Iceland\n(n=0)","Ireland\n(n=0)","Mexico\n(n=0)","Portugal\n(n=0)","Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
   xlab(" ") + 
   ylab(" ") +
   coord_cartesian(xlim=c(-172,26),ylim=c(21,81)) +
