@@ -15,6 +15,7 @@ library(ggplot2)
 library(tibble)
 library(ggsignif)
 library(DiagrammeR)
+library(maps)
 ```
 
 ## Loading in the dataset
@@ -73,6 +74,20 @@ ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
   theme(panel.background=element_blank(),legend.position="bottom",panel.border=element_rect(fill=NA))
 ```
 
+## Looking at geospatial variation across studies
+
+```{r}
+intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway"))
+
+ggplot(intervention_map,aes(x=long,y=lat,group=group,fill=region)) +
+  geom_polygon(color="black",size=.15,alpha=0.8) +
+  scale_fill_manual(values=c("lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
+  xlab(" ") + 
+  ylab(" ") +
+  coord_cartesian(xlim=c(-172,26),ylim=c(20,83)) +
+  theme(axis.ticks=element_blank(),axis.text=element_blank(),panel.border=element_rect(fill=NA),panel.background=element_blank(),legend.position="bottom")
+```
+
 ## Comparing success rates across the three ddentified approaches
 
 ```{r}
@@ -98,6 +113,7 @@ ggplot(sr.dataset,aes(x=effect.mag,y=outcome.var,fill=outcome.var)) +
   xlab("Mean Effect Size") + 
   ylab(" ") +
   labs(fill=" ") +
+  scale_x_continuous(breaks=c(1,6,11,16)) +
   coord_cartesian(xlim=c(1,17.8)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
@@ -130,7 +146,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) +
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
   labs(color=" ") +
-  scale_fill_manual(guide=guide_legend(title=NULL),breaks=c("Multimodal","Choice Architecture","Conscious Processing"),values=c("thistle3","lightsteelblue3","lightcoral"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
+  scale_fill_manual(guide=guide_legend(title=NULL),breaks=c("Multimodal","Choice Architecture","Conscious Processing"),values=c("thistle3","lightsteelblue3","lightcoral"),labels=c("Multimodal (n=8)","Choice Architecture (n=5)","Conscious Processing (n=4)")) +
   scale_y_discrete(limits=c("Garnett et al. (2020a)","Garnett et al. (2021)","Brunner et al. (2018)","Schwitzgebel, Cokelet, & Singer (2020)","Malan (2020)","Larner et al. (2021)","Kurz (2018)","Garnett et al. (2019)","Jalil, Tasoff, & Bustamante (2020)","Turnwald & Crum (2019)","Cerezo-Prieto & Frutos-Esteban (2021)","Piester et al. (2020a)","Piester et al. (2020b)","Slapø & Karevold (2019)","Andersson & Nelander (2021)","Michels et al. (2008)","Garnett et al. (2020b)")) + 
   theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
@@ -142,7 +158,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   geom_violin(adjust=1.2,alpha=0.8,size=.3) + 
   stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
   scale_y_discrete(limits=c("Conscious Processing","Choice Architecture","Multimodal")) +
-  scale_fill_manual(values=c("thistle3","lightsteelblue3","lightcoral"),breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
+  scale_fill_manual(values=c("thistle3","lightsteelblue3","lightcoral"),breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=8)","Choice Architecture (n=5)","Conscious Processing (n=4)")) +
   xlab("Mean Effect Size") + 
   ylab(" ") +
   labs(fill=" ") +
