@@ -86,7 +86,7 @@ ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
 ``` r
 ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) + 
   geom_col(position="fill",alpha=.8) + 
-  scale_fill_manual(values =c("paleturquoise3","goldenrod1"),guide=guide_legend(title=NULL)) +
+  scale_fill_manual(values=c("paleturquoise3","azure2"),guide=guide_legend(title=NULL)) +
   scale_x_discrete(labels=c("Choice Architecture (n=5)","Conscious Processing (n=16)","Multimodal (n=10)")) +
   scale_y_continuous(labels=scales::percent_format(.1L),breaks=c(1,.6,.437,0)) +
   xlab(" ") + 
@@ -147,7 +147,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) +
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
   labs(color=" ") +
-  scale_fill_brewer(breaks=c("Multimodal","Choice Architecture","Conscious Processing"),palette="Set2",labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
+  scale_fill_manual(guide=guide_legend(title=NULL),breaks=c("Multimodal","Choice Architecture","Conscious Processing"),values=c("thistle3","lightsteelblue3","lightcoral"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
   scale_y_discrete(limits=c("Garnett et al. (2020a)","Garnett et al. (2021)","Brunner et al. (2018)","Schwitzgebel, Cokelet, & Singer (2020)","Malan (2020)","Larner et al. (2021)","Kurz (2018)","Garnett et al. (2019)","Jalil, Tasoff, & Bustamante (2020)","Turnwald & Crum (2019)","Cerezo-Prieto & Frutos-Esteban (2021)","Piester et al. (2020a)","Piester et al. (2020b)","Slapø & Karevold (2019)","Andersson & Nelander (2021)","Michels et al. (2008)","Garnett et al. (2020b)")) + 
   theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
@@ -161,7 +161,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   geom_violin(adjust=1.2,alpha=0.8,size=.3) + 
   stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
   scale_y_discrete(limits=c("Conscious Processing","Choice Architecture","Multimodal")) +
-  scale_fill_brewer(palette="Set2",breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
+  scale_fill_manual(values=c("thistle3","lightsteelblue3","lightcoral"),breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
   xlab("Mean Effect Size") + 
   ylab(" ") +
   labs(fill=" ") +
