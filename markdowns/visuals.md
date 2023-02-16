@@ -71,7 +71,7 @@ times.series <- read.csv("~/github/university-meat-reduction/data/time-series.cs
 ``` r
 ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
   geom_col(position="dodge") +
-  scale_fill_brewer(palette="RdPu",guide=guide_legend(title=NULL)) +
+  scale_fill_brewer(palette="Purples",guide=guide_legend(title=NULL)) +
   scale_x_continuous(breaks=c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021)) +
   xlab(" ") +
   ylab("Cumulative Frequency") +
