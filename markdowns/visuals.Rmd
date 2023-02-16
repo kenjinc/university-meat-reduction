@@ -77,16 +77,20 @@ ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
 ## Looking at geospatial variation across studies
 
 ```{r}
-intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway"))
+intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway","Mexico"))
+```
 
+
+```{r}
 ggplot(intervention_map,aes(x=long,y=lat,group=group,fill=region)) +
   geom_polygon(color="black",size=.15,alpha=0.8) +
-  scale_fill_manual(values=c("lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
+  scale_fill_manual(values=c("white","lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Mexico","Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Mexico","Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Mexico\n(n=0)","Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
   xlab(" ") + 
   ylab(" ") +
-  coord_cartesian(xlim=c(-172,26),ylim=c(20,83)) +
+  coord_cartesian(xlim=c(-172,26),ylim=c(21,81)) +
   theme(axis.ticks=element_blank(),axis.text=element_blank(),panel.border=element_rect(fill=NA),panel.background=element_blank(),legend.position="bottom")
 ```
+
 
 ## Comparing success rates across the three ddentified approaches
 

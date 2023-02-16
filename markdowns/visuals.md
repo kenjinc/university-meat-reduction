@@ -85,18 +85,20 @@ ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
 ## Looking at geospatial variation across studies
 
 ``` r
-intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway"))
+intervention_map <- map_data("world", region=c("USA","Canada","Sweden","Spain","UK","Italy","Norway","Mexico"))
+```
 
+``` r
 ggplot(intervention_map,aes(x=long,y=lat,group=group,fill=region)) +
   geom_polygon(color="black",size=.15,alpha=0.8) +
-  scale_fill_manual(values=c("lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
+  scale_fill_manual(values=c("white","lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Mexico","Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Mexico","Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Mexico\n(n=0)","Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
   xlab(" ") + 
   ylab(" ") +
-  coord_cartesian(xlim=c(-172,26),ylim=c(20,83)) +
+  coord_cartesian(xlim=c(-172,26),ylim=c(21,81)) +
   theme(axis.ticks=element_blank(),axis.text=element_blank(),panel.border=element_rect(fill=NA),panel.background=element_blank(),legend.position="bottom")
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ## Comparing success rates across the three ddentified approaches
 
@@ -111,7 +113,7 @@ ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ## Illustrating effect size heterogeneity
 
@@ -129,7 +131,7 @@ ggplot(sr.dataset,aes(x=effect.mag,y=outcome.var,fill=outcome.var)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ## Creating a dataframe for the fixed effect model
 
@@ -187,7 +189,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) +
   theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ## Comparing effect estimates across the three identified approaches
 
@@ -204,4 +206,4 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
