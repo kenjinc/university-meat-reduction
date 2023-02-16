@@ -121,7 +121,7 @@ in meat consumption.
 ``` r
 ggplot(fixed.effect,aes(x=effect.mag,y=study.title,color=approach)) + 
   geom_errorbar(aes(xmin=lower.ci,xmax=higher.ci),color="black",width=.2,size=.3) +
-  geom_point(alpha=.8,size=3) + 
+  geom_point(alpha=.8,size=4.2) + 
   xlab("Estimated Effect Size") + 
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
@@ -137,7 +137,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,color=approach)) +
 
 ``` r
 ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
-  geom_violin(adjust=1.2,alpha=0.8) + 
+  geom_violin(adjust=1.2,alpha=0.8,size=.3) + 
   stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
   scale_y_discrete(limits=c("Conscious Processing","Choice Architecture","Multimodal")) +
   scale_fill_brewer(palette="Set2",breaks=c("Multimodal","Choice Architecture","Conscious Processing"),labels=c("Multimodal (n=10)","Choice Architecture (n=5)","Conscious Processing (n=16)")) +
@@ -145,7 +145,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   ylab(" ") +
   labs(fill=" ") +
   coord_cartesian(xlim=c(.8,4)) +
-  theme(panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
+  theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
