@@ -70,7 +70,7 @@ times.series <- read.csv("~/github/university-meat-reduction/data/time-series.cs
 
 ``` r
 ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
-  geom_col(position="dodge") +
+  geom_col(position="dodge",alpha=0.8) +
   scale_fill_brewer(palette="Purples",guide=guide_legend(title=NULL)) +
   scale_x_continuous(breaks=c(2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021)) +
   xlab(" ") +
@@ -95,6 +95,23 @@ ggplot(sr.dataset,aes(x=approach,y=num.study,fill=effect.dir)) +
 ```
 
 ![](visuals_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+## Illustrating effect size heterogeneity
+
+``` r
+ggplot(sr.dataset,aes(x=effect.mag,y=outcome.var,fill=outcome.var)) +
+  geom_violin(adjust=1.6,alpha=0.8,size=.3) + 
+  stat_summary(fun="mean",geom="point",shape=21,fill="black",size=3) +
+  scale_y_discrete(limits=c("Observed Changes","Self-Reported Changes","Intended Changes")) +
+  scale_fill_brewer(palette="Oranges",limits=c("Intended Changes","Self-Reported Changes","Observed Changes"),breaks=c("Observed Changes","Self-Reported Changes","Intended Changes"),labels=c("Observed Changes (n=17)","Self-Reported Changes (n=10)","Intended Changes (n=4)")) +
+  xlab("Mean Effect Size") + 
+  ylab(" ") +
+  labs(fill=" ") +
+  coord_cartesian(xlim=c(1,17.8)) +
+  theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
+```
+
+![](visuals_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ## Creating a dataframe for the fixed effect model
 
@@ -142,7 +159,7 @@ print(as_tibble(fixed.effect))
 ``` r
 ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) + 
   geom_errorbar(aes(xmin=lower.ci,xmax=higher.ci),color="black",width=.2,size=.3) +
-  geom_point(alpha=.5,size=6,shape=21) + 
+  geom_point(alpha=.8,size=6,shape=21) + 
   xlab("Estimated Effect Size") + 
   ylab(" ") + 
   scale_x_continuous(breaks=c(0,2,4,6,8),limits=c(0,8)) +
@@ -152,7 +169,7 @@ ggplot(fixed.effect,aes(x=effect.mag,y=study.title,fill=approach)) +
   theme(legend.position="bottom",panel.background=element_blank(),panel.border=element_rect(fill=NA),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ## Comparing effect estimates across the three identified approaches
 
@@ -169,4 +186,4 @@ ggplot(fixed.effect,aes(x=effect.mag,y=approach,fill=approach)) +
   theme(legend.position="bottom",panel.border=element_rect(fill=NA),panel.background=element_blank(),axis.ticks.y=element_blank(),axis.text.y=element_blank(),panel.grid.minor=element_blank())
 ```
 
-![](visuals_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](visuals_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
