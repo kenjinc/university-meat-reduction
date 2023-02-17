@@ -77,20 +77,19 @@ ggplot(times.series,aes(x=year,y=cumul.freq,fill=fill)) +
 ## Looking at geospatial variation across studies
 
 ```{r}
-intervention_map <- map_data("world", region=c("Austria","Belgium","Finland","France","Iceland","Ireland","Mexico","Netherlands","Portugal","Russia","Switzerland","Canada","Norway","Spain","Italy","Sweden","UK","USA"))
+intervention_map <- map_data("world", region=c("Albania","Austria","Belarus","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Czech Republic","Denmark","Estonia","Finland","France","Germany","Greece","Iceland","Ireland","Latvia","Lithuania","Luxembourg","Mexico","Moldova","Montenegro","Netherlands","North Macedonia","Poland","Portugal","Romania","Russia","Serbia","Slovenia","Switzerland","Turkey","Ukraine","Canada","Norway","Spain","Italy","Sweden","UK","USA"))
 ```
 
 
 ```{r}
 ggplot(intervention_map,aes(x=long,y=lat,group=group,fill=region)) +
   geom_polygon(color="black",size=.15,alpha=0.8) +
-  scale_fill_manual(values=c("gray90","gray90","gray90","gray90","gray90","gray90","gray90","gray90","gray90","gray90","gray90","lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Austria","Belgium","Finland","France","Iceland","Ireland","Mexico","Nertherlands","Portugal","Russia","Switzerland","Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Austria","Belgium","Finland","France","Iceland","Ireland","Mexico","Nertherlands","Portugal","Russia","Switzerland","Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Austria\n(n-0)","Belgium\n(n=0)","Finland\n(n=0)","France\n(n=0)","Iceland\n(n=0)","Ireland\n(n=0)","Mexico\n(n=0)","Netherlands\n(n=0)","Portugal\n(n=0)","Russia\n(n=0)","Switzerland\n(n=0)","Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
+  scale_fill_manual(values=c("white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","white","lavender","lavender","lavender","slateblue1","slateblue1","slateblue","slateblue4"),limits=c("Albania","Austria","Belarus","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Czech Republic","Denmark","Estonia","Finland","France","Germany","Greece","Iceland","Ireland","Latvia","Lithuania","Luxembourg","Mexico","Moldova","Montenegro","Netherlands","North Macedonia","Poland","Portugal","Romania","Russia","Serbia","Slovenia","Switzerland","Turkey","Ukraine","Canada","Norway","Spain","Italy","Sweden","UK","USA"),breaks=c("Albania","Austria","Belarus","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Czech Republic","Denmark","Estonia","Finland","France","Germany","Greece","Iceland","Ireland","Latvia","Lithuania","Luxembourg","Mexico","Moldova","Montenegro","Netherlands","North Macedonia","Poland","Portugal","Romania","Russia","Serbia","Slovenia","Switzerland","Turkey","Ukraine","Canada","Norway","Spain","Italy","Sweden","UK","USA"),labels=c("Albania\n(n=0)","Austria\n(n-0)","Belarus\n(n=0)","Belgium\n(n=0)","Bosnia and Herzegovina\n(n=0)","Bulgaria\n(n=0)","Croatia\n(n=0)","Czech Republic\n(n=0)","Denmark\n(n=0)","Estonia\n(n=0)","Finland\n(n=0)","France\n(n=0)","Germany\n(n=0)","Greece\n(n=0)","Iceland\n(n=0)","Ireland\n(n=0)","Latvia\n(n=0)","Lithuania\n(n=0)","Luxembourg\n(n=0)","Mexico\n(n=0)","Moldova\n(n=0)","Montenegro\n(n=0)","Netherlands\n(n=0)","North Macedonia\n(n=0)","Poland\n(n=0)","Portugal\n(n=0)","Romania\n(n=0)","Russia\n(n=0)","Serbia\n(n=0)","Slovenia\n(n=0)","Switzerland\n(n=0)","Turkey\n(n=0)","Ukraine\n(n=0)","Canada\n(n=1)","Norway\n(n=1)","Spain\n(n=1)","Italy\n(n=3)","Sweden\n(n=3)","UK\n(n=7)","USA\n(n=15)"),guide=guide_legend(title=NULL,nrow=1)) +
   xlab(" ") + 
   ylab(" ") +
-  coord_cartesian(xlim=c(-172,26),ylim=c(21,81)) +
-  theme(axis.ticks=element_blank(),axis.text=element_blank(),panel.border=element_rect(fill=NA),panel.background=element_blank(),legend.position="bottom")
+  coord_cartesian(xlim=c(-162,29),ylim=c(22,76)) +
+  theme(axis.ticks=element_blank(),axis.text=element_blank(),panel.border=element_rect(fill=NA),legend.position="bottom",panel.grid=element_blank(),panel.background=element_rect(fill="aliceblue"))
 ```
-
 
 ## Comparing success rates across the three ddentified approaches
 
